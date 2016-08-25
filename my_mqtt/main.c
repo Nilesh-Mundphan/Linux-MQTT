@@ -11,7 +11,7 @@
 #define SUB_PATH        "nilesh_mundphan/feeds/button"
 
 
-const char* mqtt_server = "52.70.203.194";//"io.adafruit.com"
+const char* mqtt_server = "104.20.38.240";//"52.70.203.194";//"io.adafruit.com"
 
 int main(int argc, char *argv[])
 {

@@ -182,6 +182,25 @@ uint8_t m_subscribe(const char* topic, uint8_t qos) {
     return false;
 }
 
+uint8_t m_unsubscribe(const char* topic) {
+    if (MQTT_MAX_PACKET_SIZE < 9 + strlen(topic)) {
+    // Too long
+        return false;
+      }
+	if (m_connected()) {
+        	uint16_t length = 5;
+                nextMsgId++;
+                if (nextMsgId == 0) {
+                      nextMsgId = 1;
+                }
+                mqtt_buffer[length++] = (nextMsgId >> 8);
+                mqtt_buffer[length++] = (nextMsgId & 0xFF);
+                length = writeString(topic, mqtt_buffer,length);
+        	return m_write(MQTTUNSUBSCRIBE|MQTTQOS1,mqtt_buffer,length-5);
+        }
+        return false;
+}
+
 void responce_type(uint8_t * buff,int llen)
 {
 	uint8_t type = buff[0]&0xF0,llen1=1;

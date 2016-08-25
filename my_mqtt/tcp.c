@@ -42,10 +42,11 @@ int client_connect(const char *ip ,uint16_t port)
         if( connect(sockfd, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0)
         {
                 perror("connect");
-                return 1;
+                return 0;
         }
 	client_state=1;
 	pthread_create(&clr,0,cread,NULL);
+return 1;
 }
 
 size_t client_write(const uint8_t *buff,size_t len)

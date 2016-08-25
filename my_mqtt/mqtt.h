@@ -57,11 +57,11 @@ int m_write(uint8_t header, uint8_t* buf, uint16_t length);
 uint8_t m_connect(const char *id, const char *user, const char *pass, const char* willTopic, uint8_t willQos, int willRetain, const char* willMessage);
 uint8_t m_publish(const char* topic, const uint8_t* payload, unsigned int plength, int retained);
 uint8_t m_subscribe(const char* topic, uint8_t qos);
-void m_ping();
+uint8_t m_unsubscribe(const char* topic);
 
+void m_ping();
 uint8_t m_readByte();
 uint16_t m_readPacket(uint8_t* lengthLength);
-
 uint8_t m_connected();
 void m_disconnect();
 
